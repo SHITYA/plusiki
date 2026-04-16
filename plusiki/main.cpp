@@ -229,12 +229,12 @@ void loadFromBinary(Child arr[], int& n, string path) {
 int main() {
     setlocale(LC_ALL, "Russian");
     const int N = 20;
-
-// ПУТЬ К ПАПКЕ
+    
+    // ПУТЬ К ПАПКЕ
     string folder = "/Users/artem/coding/plusiki/plusiki/";
     string txtPath = folder + "genders.txt";
     string binPath = folder + "students.dat";
-
+    
     Child students[N] = {
         {"Ivanov", "Ivan", MALE, 145.0, {10, 3, 2010}},
         {"Petrov", "Petr", MALE, 150.5, {22, 7, 2009}},
@@ -257,44 +257,43 @@ int main() {
         {"Grigoriev", "Konstantin", MALE, 151.5, {2, 7, 2010}},
         {"Alekseeva", "Marina", FEMALE, 146.2, {16, 4, 2009}}
     };
-
-
+    
     // 1. Средний рост мальчиков
     cout << "\nСредний рост мальчиков: " << avgHeightBoys(students, N) << endl;
-        
+    
     // 2. Топ-5 девочек
     Child topGirls[5];
     int topSize;
     top5Girls(students, N, topGirls, topSize);
-
+    
     cout << "\nТоп-5 самых высоких девочек:\n";
     printArray(topGirls, topSize);
-
+    
     // 3. Сортировка
     sortBySurname(students, N);
     cout << "\nОтсортированный список:\n";
     printArray(students, N);
-
+    
     // 4. Поиск
     string surname;
     cout << "\nВведите фамилию: ";
     cin >> surname;
     findBySurname(students, N, surname);
-
+    
     // 5. Изменение
     cout << "\nВведите фамилию для изменения: ";
     cin >> surname;
     editChild(students, N, surname);
-
+    
     // 6. Фильтр по месяцу
     int month;
     cout << "\nВведите месяц (например: 7): ";
     cin >> month;
-
+    
     Child birthdayList[20];
     int bSize;
     birthdayMonth(students, N, month, birthdayList, bSize);
-
+    
     cout << "\nДни рождения в этом месяце:\n";
     printArray(birthdayList, bSize);
     
@@ -302,19 +301,16 @@ int main() {
     // Занятие 10
     // Задания 1 (Текстовый файл)
     updateGenderFromFile(students, N, txtPath);
-
+    
     // 2. Задания 2 (Бинарная запись)
     saveToBinary(students, N, binPath);
-
+    
     // 3. Проверка: загрузка из бинарного файла в новый массив
     Child loadedStudents[N];
     int loadedCount = 0;
     loadFromBinary(loadedStudents, loadedCount, binPath);
     
     cout << "\n--- Проверка данных из бинарного файла ---" << endl;
-    printArray(loadedStudents, 3); // Выведем первых трех для теста
+    printArray(loadedStudents, 20);
     return 0;
 }
-
-
-
